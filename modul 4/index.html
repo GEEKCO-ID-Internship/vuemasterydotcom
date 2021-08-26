@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width">
+<title> Product App </title>	
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="nav-bar"></div>
+
+	<div id="app">
+		<div class="product">
+			<div class="product-image">
+			<img v-bind:src="image">
+			</div>
+			<div class="product-info">
+				<h1>{{ product }}</h1>
+				<h2>{{ productdesc }}</h2>
+				<span v-if="onsale">ON SALE</span>
+				<p v-if="inventory > 20">In Stock</p>
+				<p v-else-if="inventory < 10 && inventory > 0 ">Stock running low</p>
+				<p v-else>Out of Stock</p>
+				<p>Material Composition:</p>
+				<ul>
+					<li v-for="detail in details">{{ detail }}
+
+					</li>
+				</ul>
+					
+					<p> Choice Your favorite color </p>
+
+					<div v-for="variant in variants" :key="variant.variantId">
+						<p>{{ variant.variantColor }}</p>
+
+					</div>
+
+					<p> Choice Your size </p>
+				<ul>
+					<li v-for="size in sizes" >
+						{{size}}
+	
+					</li>
+				</ul>
+				<a :href="link" 
+			target="_blank"> Produk Seperti Ini Lagi</a>
+				
+			
+			</div>
+			
+			<a :href="ella"
+			target="_blank"> Orang Paling Nyebelin</a>
+		</div>
+	</div>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src = "main.js"></script>
+</body>
+
+</html>

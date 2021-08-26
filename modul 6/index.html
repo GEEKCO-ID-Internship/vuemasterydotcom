@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width">
+<title> Product App </title>	
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="nav-bar"></div>
+
+	<div id="app">
+		<div class="product">
+			<div class="product-image">
+			<img :src="image">
+			</div>
+			<div class="product-info">
+				<h1>{{ product }}</h1>
+				<h2>{{ productdesc }}</h2>
+				<span v-if="onsale">ON SALE</span>
+				<p v-if="instock">In Stock</p>
+				<p v-else :class="{outofstock:!instock}">Out of Stock</p>
+				<p>Material Composition:</p>
+				<ul>
+					<li v-for="detail in details">{{ detail }}</li>
+				</ul>
+					<div v-for="variant in variants" :key="variant.variantId"
+						class="color-box":style="{ backgroundColor: variant.variantColor }"
+						@mouseover="updateProduct(variant.variantImage)">
+					</div>
+
+					<p> Choose Your size </p>
+				<ul>
+					<li v-for="size in sizes" >
+						{{size}}
+	
+					</li>
+				</ul>
+				
+			<button v-on:click="addToCart"
+			:disabled="!instock"
+			:class="{disabledButton: !instock}"
+			>Add to cart</button>
+			<button v-on:click="removeCart"
+			>Remove from cart</button>
+		<div class="cart">
+		<p>Cart ({{ cart }})
+		</p>
+		
+		</div>	
+		
+			</div>
+			<a :href="link" 
+			target="_blank"> Produk Seperti Ini Lagi</a>
+		</div>
+	</div>
+	
+
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src = "main.js"></script>
+</body>
+
+
+</html>
